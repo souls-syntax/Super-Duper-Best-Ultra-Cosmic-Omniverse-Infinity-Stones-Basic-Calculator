@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/mathjs@15.1.1/lib/browser/math.min.js"></script>
+    <script>
+      
+      function addLog(msg) {
+        var ul = document.getElementById("log")
+        var li = document.createElement("li")
+        var msg_text_node = document.createTextNode(msg)
+        li.appendChild(msg_text_node)
+        ul.appendChild(li)
+      }
+
+      function calculate() {
+        expression = document.getElementById("expression").value;
+        if (expression) {
+          try {
+            console.log(expression);
+            answer = math.evaluate(expression)
+            document.getElementById("expression").value = answer;
+            addLog(expression + "=" + answer)
+          } catch(e) {
+            console.log("Bad expression")
+            addLog(e + "Expression is bad")
+          }
+        }
+      }
+      
+      function initialize_app() {
+        calculate_button = document.getElementById("calculate")
+        calculate_button.addEventListener("click",calculate)
+      }
+    </script>
+
+</head>
+<body onload="initialize_app()">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                
+            </div>
+            <div class="col">
+                <input type="input" name="form-control" id="expression" placeholder="3+5">
+                <button id="calculate" class="btn btn-primary">Calculate</button>
+            </div>
+            <h3>Log</h3>
+            <ul id="log"></ul>
+        
+            <div class="col">
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
